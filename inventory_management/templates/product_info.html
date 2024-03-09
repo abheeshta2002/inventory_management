@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Product Information</h2>
+        <div>
+            <p><strong>Name:</strong> {{ item[1] }}</p>
+            <p><strong>Quantity:</strong> {{ item[2] }}</p>
+            <hr>
+            <h3>Add Custom Parameter</h3>
+            <form method="post">
+                <div class="form-group">
+                    <label for="param_name">Parameter Name</label>
+                    <input type="text" class="form-control" id="param_name" name="param_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="param_value">Parameter Value</label>
+                    <input type="text" class="form-control" id="param_value" name="param_value" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Parameter</button>
+            </form>
+        </div>
+        <hr>
+        <h3>Custom Parameters</h3>
+        <ul>
+            {% for key, value in custom_parameters.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}
+                    <form action="{{ url_for('remove_parameter', item_id=item[0], param_name=key) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                    <a href="{{ url_for('edit_parameter', item_id=item[0], param_name=key) }}" class="btn btn-secondary btn-sm">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Inventory</a>
+    </div>
+</body>
+</html>
