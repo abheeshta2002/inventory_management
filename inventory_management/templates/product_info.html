@@ -9,24 +9,29 @@
 <body>
     <div class="container mt-5">
         <h2>Product Information</h2>
+        <!-- Display item information -->
         <div>
             <p><strong>Name:</strong> {{ item[1] }}</p>
             <p><strong>Quantity:</strong> {{ item[2] }}</p>
-            <hr>
-            <h3>Add Custom Parameter</h3>
-            <form method="post">
-                <div class="form-group">
-                    <label for="param_name">Parameter Name</label>
-                    <input type="text" class="form-control" id="param_name" name="param_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="param_value">Parameter Value</label>
-                    <input type="text" class="form-control" id="param_value" name="param_value" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Add Parameter</button>
-            </form>
+            <!-- Display QR code -->
+            <img src="data:image/png;base64,{{ qr_image_base64 }}" alt="QR Code" class="img-fluid">
         </div>
         <hr>
+        <!-- Add Custom Parameter form -->
+        <h3>Add Custom Parameter</h3>
+        <form method="post">
+            <div class="form-group">
+                <label for="param_name">Parameter Name</label>
+                <input type="text" class="form-control" id="param_name" name="param_name" required>
+            </div>
+            <div class="form-group">
+                <label for="param_value">Parameter Value</label>
+                <input type="text" class="form-control" id="param_value" name="param_value" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Parameter</button>
+        </form>
+        <hr>
+        <!-- Custom Parameters list -->
         <h3>Custom Parameters</h3>
         <ul>
             {% for key, value in custom_parameters.items() %}
@@ -38,6 +43,7 @@
                 </li>
             {% endfor %}
         </ul>
+        <!-- Back to Inventory link -->
         <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Inventory</a>
     </div>
 </body>

@@ -29,10 +29,10 @@
                         <form action="/decrease/{{ item[0] }}" method="post" style="display: inline;">
                             <button type="submit" class="btn btn-warning btn-sm ml-1">-</button>
                         </form>
-                        <form action="/remove/{{ item[0] }}" method="post">
-                            <button type="submit" class="btn btn-danger">Remove</button>
+                        <form action="/remove/{{ item[0] }}" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-danger mr-1">Remove</button>
+                            <a href="{{ url_for('product_info', item_id=item[0]) }}" class="btn btn-info">View Details</a>
                         </form>
-                        <a href="{{ url_for('product_info', item_id=item[0]) }}" class="btn btn-info">View Details</a>
                     </td>
                 </tr>
                 {% endfor %}
